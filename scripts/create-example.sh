@@ -1,16 +1,22 @@
 #!/bin/bash
 
-API="${API_ORIGIN:-http://localhost:4741}"
-URL_PATH="/examples"
-curl "${API}${URL_PATH}" \
-  --include \
-  --request POST \
+curl --include --request POST http://localhost:4741/books \
   --header "Content-Type: application/json" \
-  --header "Authorization: Token token=$TOKEN" \
   --data '{
-    "example": {
-      "text": "'"${TEXT}"'"
+    "book": {
+      "title": "Catching Fire",
+      "author": "Suzanne Collins"
     }
   }'
 
-echo
+  curl --include --request DELETE https://localhost:4741/books/3 \
+    --header "Content-Type: application/json" \
+
+  curl --include --request PATCH http://localhost:4741/books/3 \
+    --header "Content-Type: application/json" \
+    --data '{
+      "book": {
+        "title": "Mockingjay",
+        "author": "Suzanne Collins"
+      }
+    }'
