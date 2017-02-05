@@ -7,3 +7,5 @@ curl --include --request POST http://localhost:4741/reads \
       "rating": "5"
     }
   }'
+
+  curl --include --request DELETE http://localhost:4741/reads/1
