@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-class User < ApplicationRecord
+class User < ActiveRecord::Base
   include Authentication
-  has_many :examples
+  has_many :books, through: :reads
+  has_many :reads, dependent: :destroy
 end
